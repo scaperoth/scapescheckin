@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "scapescheckin",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authscapescheckin90b18c14",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

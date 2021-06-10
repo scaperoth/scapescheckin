@@ -1,0 +1,21 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-scapescheckin-dev-30556-authRole",
+      "UnauthRoleArn": "arn:aws:iam::046126759453:role/amplify-scapescheckin-dev-30556-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::046126759453:role/amplify-scapescheckin-dev-30556-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-scapescheckin-dev-30556-deployment",
+      "UnauthRoleName": "amplify-scapescheckin-dev-30556-unauthRole",
+      "StackName": "amplify-scapescheckin-dev-30556",
+      "StackId": "arn:aws:cloudformation:us-east-1:046126759453:stack/amplify-scapescheckin-dev-30556/7210ba70-c806-11eb-b5d7-12409d333fbd",
+      "AmplifyAppId": "d1izyyxlimcbo0",
+      "AuthTriggerTemplateURL": ""
+    },
+    "categories": {
+      "auth": {
+        "scapescheckin90b18c14": {}
+      }
+    }
+  }
+}

@@ -5,16 +5,18 @@ import { createMood } from '../../graphql/mutations'
 import { listMoods } from '../../graphql/queries'
 
 import awsExports from "../../aws-exports";
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, ScrollView } from 'react-native';
 Amplify.configure(awsExports);
 
 const initialState = { level: '' }
 
-const NewMood = () => {
+const NewMood = (props) => {
+    console.log('props', props)
   const [formState, setFormState] = useState(initialState)
   const [moods, setMoods] = useState([])
 
   useEffect(() => {
+      console.log('formState', formState)
     fetchMoods()
   }, [])
 
@@ -32,6 +34,7 @@ const NewMood = () => {
 
   async function addMood() {
     try {
+        console.log(formState)
       if (!formState.level ) return
       const mood = { ...formState }
       setMoods([...moods, mood])
@@ -45,14 +48,17 @@ const NewMood = () => {
 
   return (
     <View style={styles.container}>
-      <h2>Amplify Moods</h2>
-      <TextInput
-        onChange={event => setInput('level', event.target.value)}
-        style={styles.input}
-        value={formState.level}
-        placeholder="Level"
-      />
-      <Button title="Create Mood" style={styles.button} onPress={addMood}/>
+      <View>
+        <Text>Amplify Moods</Text>
+        <TextInput
+          onChangeText={text => setInput('level', text)}
+          style={styles.input}
+          value={formState.level}
+          placeholder="Level"
+        />
+        <Button title="Create Mood" style={styles.button} onPress={addMood}/>
+      </View>
+      <ScrollView style={{maxHeight: 400}}>
       {
         moods.map((mood, index) => (
           <View key={mood.id ? mood.id : index} style={styles.mood}>
@@ -61,17 +67,17 @@ const NewMood = () => {
           </View>
         ))
       }
+      </ScrollView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: { width: 400, margin: '0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 20 },
+  container: { flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 20 },
   mood: {  marginBottom: 15 },
-  input: { border: 'none', backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18 },
+  input: { backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18 },
   moodLevel: { fontSize: 20, fontWeight: 'bold' },
   moodCreatedAt: { marginBottom: 0 },
-  button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
 })
 
 export default NewMood

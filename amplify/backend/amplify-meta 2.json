@@ -1,0 +1,64 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-scapescheckin-dev-30556-authRole",
+      "UnauthRoleArn": "arn:aws:iam::046126759453:role/amplify-scapescheckin-dev-30556-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::046126759453:role/amplify-scapescheckin-dev-30556-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-scapescheckin-dev-30556-deployment",
+      "UnauthRoleName": "amplify-scapescheckin-dev-30556-unauthRole",
+      "StackName": "amplify-scapescheckin-dev-30556",
+      "StackId": "arn:aws:cloudformation:us-east-1:046126759453:stack/amplify-scapescheckin-dev-30556/7210ba70-c806-11eb-b5d7-12409d333fbd",
+      "AmplifyAppId": "d1izyyxlimcbo0",
+      "AuthTriggerTemplateURL": ""
+    }
+  },
+  "auth": {
+    "scapescheckin90b18c14": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "output": {
+        "UserPoolId": "us-east-1_jEU6xO2qE",
+        "AppClientIDWeb": "4ctporp54hfln0scnlpoj29med",
+        "AppClientID": "3bd4kqpqvbgrvmlkpjbj7gslmi",
+        "IdentityPoolId": "us-east-1:39276eb6-780f-4ab2-b30e-ceb0853c5f9b",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:046126759453:userpool/us-east-1_jEU6xO2qE",
+        "IdentityPoolName": "scapescheckin90b18c14_identitypool_90b18c14__dev",
+        "UserPoolName": "scapescheckin90b18c14_userpool_90b18c14"
+      },
+      "lastPushTimeStamp": "2021-06-08T04:35:53.080Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-scapescheckin-dev-30556-deployment/amplify-cfn-templates/auth/scapescheckin90b18c14-cloudformation-template.yml",
+        "logicalId": "authscapescheckin90b18c14"
+      },
+      "lastPushDirHash": "k9AFzyRB6fbbEwOTJ/tvfgscMUQ="
+    }
+  },
+  "api": {
+    "scapescheckin": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authscapescheckin90b18c14"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "bmqgvdfrhrhila4twrusfhgcmu",
+        "GraphQLAPIEndpointOutput": "https://xzeqowrscbcdrixa4cnxsi7k5i.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2021-06-08T04:35:55.996Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-scapescheckin-dev-30556-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiscapescheckin"
+      },
+      "lastPushDirHash": "bFjDWt78qthnWf6s7JnOcfIWw2A="
+    }
+  }
+}
