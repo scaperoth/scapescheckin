@@ -1,12 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { withAuthenticator } from 'aws-amplify-react-native'
 
-export default function App() {
+import Amplify from 'aws-amplify'
+import config from './src/aws-exports'
+import NewMood from './src/components/Mood/New';
+import SignOut from './src/functions/User/SignOut';
+Amplify.configure(config)
+
+const App = () => {
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
+      <NewMood/>
+      <Button title="Sign Out" onPress={SignOut}/>
     </View>
   );
 }
@@ -19,3 +28,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default withAuthenticator(App)

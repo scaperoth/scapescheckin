@@ -1,0 +1,33 @@
+type Mood 
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  level: Int!
+}
+
+type DailyEntry 
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  text: String!
+}
+
+type LifestyleChange 
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  description: String
+}
