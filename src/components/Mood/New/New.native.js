@@ -1,17 +1,14 @@
 /* src/components/Mood/New.js */
 import React, { useEffect, useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import { createMood } from '../../graphql/mutations'
-import { listMoods } from '../../graphql/queries'
+import { createMood } from '../../../graphql/mutations'
+import { listMoods } from '../../../graphql/queries'
 
-import awsExports from "../../aws-exports";
 import { View, Text, StyleSheet, TextInput, Button, ScrollView } from 'react-native';
-Amplify.configure(awsExports);
 
 const initialState = { level: '' }
 
-const NewMood = (props) => {
-    console.log('props', props)
+const NewMood = () => {
   const [formState, setFormState] = useState(initialState)
   const [moods, setMoods] = useState([])
 
@@ -48,17 +45,17 @@ const NewMood = (props) => {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={{flex: 1}}>
         <Text>Amplify Moods</Text>
         <TextInput
           onChangeText={text => setInput('level', text)}
           style={styles.input}
           value={formState.level}
-          placeholder="Level"
+          placeholder="Levels"
         />
         <Button title="Create Mood" style={styles.button} onPress={addMood}/>
       </View>
-      <ScrollView style={{maxHeight: 400}}>
+      <View style={{flex: 2}}>
       {
         moods.map((mood, index) => (
           <View key={mood.id ? mood.id : index} style={styles.mood}>
@@ -67,17 +64,13 @@ const NewMood = (props) => {
           </View>
         ))
       }
-      </ScrollView>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 20 },
-  mood: {  marginBottom: 15 },
-  input: { backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18 },
-  moodLevel: { fontSize: 20, fontWeight: 'bold' },
-  moodCreatedAt: { marginBottom: 0 },
+  container: {flex: 3}
 })
 
 export default NewMood
