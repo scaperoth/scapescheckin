@@ -1,4 +1,20 @@
 {
     "Version": 5,
-    "ElasticsearchWarning": true
+    "ElasticsearchWarning": true,
+    "StackMapping": {
+        "DailyEntryTable": "DailyEntry",
+        "DailyEntryIAMRole": "DailyEntry",
+        "DailyEntryDataSource": "DailyEntry",
+        "GetDailyEntryResolver": "DailyEntry",
+        "ListDailyEntryResolver": "DailyEntry",
+        "CreateDailyEntryResolver": "DailyEntry",
+        "UpdateDailyEntryResolver": "DailyEntry",
+        "DeleteDailyEntryResolver": "DailyEntry",
+        "SubscriptiononCreateDailyEntryResolver": "DailyEntry",
+        "SubscriptiononUpdateDailyEntryResolver": "DailyEntry",
+        "SubscriptiononDeleteDailyEntryResolver": "DailyEntry",
+        "GetAttDailyEntryTableStreamArn": "DailyEntry",
+        "GetAttDailyEntryDataSourceName": "DailyEntry",
+        "GetAttDailyEntryTableName": "DailyEntry"
+    }
 }

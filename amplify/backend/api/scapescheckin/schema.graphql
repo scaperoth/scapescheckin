@@ -1,14 +1,3 @@
-type Mood 
-  @model
-  @auth(
-    rules: [
-      { allow: owner }
-    ]
-  ) {
-  id: ID!
-  level: Int!
-}
-
 type DailyEntry 
   @model
   @auth(
@@ -17,17 +6,8 @@ type DailyEntry
     ]
   ) {
   id: ID!
-  text: String!
-}
-
-type LifestyleChange 
-  @model
-  @auth(
-    rules: [
-      { allow: owner }
-    ]
-  ) {
-  id: ID!
-  name: String!
-  description: String
+  moodLevel: Int!
+  text: String
+  lifestyleChange: String
+  createdAt: AWSDateTime!
 }
