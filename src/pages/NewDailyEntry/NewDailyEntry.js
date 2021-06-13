@@ -11,7 +11,7 @@ const NewDailyEntry = () => {
 
   return (
     <View style={styles.container}>
-      <Navigaion pageName={'New Entry'} back={'/'} />
+      <Navigation pageName={'New Entry'} back={'/'} />
       <View style={styles.mainContent}>
           <NewDailyEntryForm />
       </View>
