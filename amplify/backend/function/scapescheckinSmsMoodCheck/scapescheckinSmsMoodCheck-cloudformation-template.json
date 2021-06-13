@@ -124,14 +124,6 @@
                     "Statement": [
                         {
                             "Effect": "Allow",
-                            "Action": ["logs:CreateLogGroup",
-                            "logs:CreateLogStream",
-                            "logs:PutLogEvents"],
-                            "Resource": { "Fn::Sub": [ "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}, "lambda": {"Ref": "LambdaFunction"}} ]}
-                        },
-                        {
-                            "Sid": "VisualEditor0",
-                            "Effect": "Allow",
                             "Action": [
                                 "cognito-idp:AdminGetUser"
                             ],
@@ -140,10 +132,44 @@
                             ]
                         },
                         {
-                            "Sid": "VisualEditor2",
                             "Effect": "Allow",
                             "Action": "mobiletargeting:*",
                             "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogStream",
+                                "dynamodb:Scan",
+                                "dynamodb:Query",
+                                "cognito-idp:AdminGetUser",
+                                "logs:PutLogEvents"
+                            ],
+                            "Resource": [
+                                { "Fn::Sub": [ "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}, "lambda": {"Ref": "LambdaFunction"}} ]},
+                                { "Fn::Sub": [ "arn:aws:dynamodb:${region}:${account}:table/*/index/*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}}]},
+                                { "Fn::Sub": [ "arn:aws:cognito-idp:${region}:${account}:userpool/us-east-1_RxJLSWgSo", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}}]},
+                                { "Fn::Sub": [ "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}, "lambda": {"Ref": "LambdaFunction"}} ]}
+                            ]
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "dynamodb:Scan",
+                                "dynamodb:Query",
+                                "logs:CreateLogGroup"
+                            ],
+                            "Resource": [
+                                { "Fn::Sub": [ "arn:aws:dynamodb:${region}:${account}:table/*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}}]},
+                                { "Fn::Sub": [ "arn:aws:logs:${region}:${account}:*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}}]}
+                            ]
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": ["logs:CreateLogGroup",
+                            "logs:CreateLogStream",
+                            "logs:PutLogEvents"],
+                            "Resource": { "Fn::Sub": [ "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}, "lambda": {"Ref": "LambdaFunction"}} ]}
                         }
                     ]
                 }
