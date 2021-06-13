@@ -7,7 +7,7 @@ import { View, Text, StyleSheet, TextInput, Button, ScrollView } from 'react-nat
 
 const initialState = { moodLevel: '' }
 
-const NewDailyEntry = (props) => {
+const NewDailyEntryForm = (props) => {
   const [formState, setFormState] = useState(initialState)
 
   function setInput(key, value) {
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   dailyEntryCreatedAt: { marginBottom: 0 },
 })
 
-export default NewDailyEntry
+export default NewDailyEntryForm

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Router as PlatformRouter, Route } from "./react-router";
-import Home from "../pages/Home";
+import {Home, NewDailyEntry} from '../pages';
+import { View } from 'react-native';
 
-const Router = ({children}) => (
+const Router = () => (
     <PlatformRouter>
-        {children}
         <Route exact path="/" component={Home} />
+        <Route path="/dailyEntry/new" component={NewDailyEntry} />
     </PlatformRouter>
   );
 

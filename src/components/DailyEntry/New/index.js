@@ -1,3 +1,3 @@
-import NewDailyEntry from './New';
+import NewDailyEntryForm from './New';
 
-export default NewDailyEntry;
+export default NewDailyEntryForm;

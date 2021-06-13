@@ -4,13 +4,14 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react-native/dist/Auth';
 import { AmplifyTheme } from 'aws-amplify-react-native';
 
-import NewDailyEntry from '../../components/DailyEntry/New';
 import SignOut from '../../functions/User/SignOut';
 import { listDailyEntrys } from '../../graphql/queries';
 import { getPastTimestamp } from '../../functions/Date/Timestamps'
 import DailyEntryToday from '../../components/DailyEntry/Today';
+import { Link } from '../../router/react-router';
+import Navigation from '../../components/Navigation/Navigation';
 
-const Home = () => {
+const Home = ({match}) => {
   const [todaysEntry, setTodaysEntry] = useState(null)
   const [showTodaysEntry, setShowTodaysEntry] = useState(null)
 
@@ -23,7 +24,7 @@ const Home = () => {
       const dailyEntryData = await API.graphql(graphqlOperation(listDailyEntrys, {
         filter: {
           createdAt: {
-            between: [getPastTimestamp(1), getPastTimestamp()]
+            between: [getPastTimestamp(24), getPastTimestamp()]
           }
         }
 
@@ -45,12 +46,14 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.navbar}>
-        <Text style={styles.title}>Scapes Check-In</Text>
-        <Button style={styles.signoutButton} title="Sign Out" onPress={SignOut}/>
-      </View>
+      <Navigation pageName={'Home'}/>
       <View style={styles.mainContent}>
-          {showTodaysEntry == false && <NewDailyEntry style={{flex: 1}}/>}
+          {showTodaysEntry == false && <View>
+            <Text>
+            There is no entry for today :-(. If you'd like to create one now, click 
+            </Text>
+              <Link to={'/dailyEntry/new'}><Text>Here</Text></Link>
+            </View>}
           {showTodaysEntry == true  && <DailyEntryToday todaysEntry={todaysEntry}/>}
       </View>
     </View>
@@ -61,25 +64,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  navbar: {
-    flex: .3,
-    display: 'flex',
-    padding: 20,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row'
+  mainContent: {
+    flex: 3,
+    padding: 20
   },
   title: {
+    flexGrow: 1,
     fontSize: 25,
     fontWeight: 'bold'
   },
   topMessage: {
     flex: 1,
-    backgroundColor: '#fff'
-  },
-  mainContent: {
-    flex: 3,
-    backgroundColor: '#f0f0f0'
   },
   header: {
     paddingTop: 50,
