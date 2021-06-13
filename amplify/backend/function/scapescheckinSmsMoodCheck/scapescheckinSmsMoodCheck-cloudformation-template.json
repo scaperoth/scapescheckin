@@ -148,8 +148,46 @@
                     ]
                 }
             }
+        },
+        "LambdaCronEvent": {
+            "Type": "AWS::Events::Rule",
+            "Properties": {
+                "ScheduleExpression": "cron(0/2 * * * ? *)",
+                "Targets": [
+                    {
+                        "Arn": {
+                            "Fn::GetAtt": [
+                                "LambdaFunction",
+                                "Arn"
+                            ]
+                        },
+                        "Id": {
+                            "Ref": "LambdaFunction"
+                        }
+                    }
+                ]
+            }
+        },
+        "LambdaInvokePermission": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "FunctionName": {
+                    "Fn::GetAtt": [
+                        "LambdaFunction",
+                        "Arn"
+                    ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "events.amazonaws.com",
+                "SourceArn": {
+                    "Fn::GetAtt": [
+                        "LambdaCronEvent",
+                        "Arn"
+                    ]
+                }
+            }
         }
-        
+
         
     },
     "Outputs": {
