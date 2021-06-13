@@ -11,7 +11,7 @@ def handler(event, context):
     username=""
     try:
         user = cognito.admin_get_user(
-            UserPoolId=os.env['PINPOINT_APPLICATION_ID'],
+            UserPoolId=os.env['COGNITO_USER_POOL_ID'],
             Username=username
         )
     except cognito.exceptions.UserNotFoundException as e:
